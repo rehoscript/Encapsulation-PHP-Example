@@ -8,12 +8,9 @@
 
 $confidential = "No public";
 $language = "PHP";
+$title = "HI!";
 
 
-function view($language)
-{
-    require 'view.php';
-}
 
-view($language);
-
+view('home',  compact("language","title"));
+?>

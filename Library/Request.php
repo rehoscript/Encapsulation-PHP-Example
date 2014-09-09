@@ -1,9 +1,11 @@
 <?php
 class Request {
     
-    protected $url,
+    protected $action,
+              $url,
               $controller, 
-              $defaultController = 'home';
+              $defaultController = 'home',
+              $defaultAction = 'index';
 
     public function __construct($url) {
         
@@ -16,6 +18,8 @@ class Request {
         $segments = explode('/', $this->getURL());
         
         $this->resolveController($segments);
+        $this->resolveAction($segments);
+        
         
     }
     
@@ -26,9 +30,16 @@ class Request {
         if(empty($this->controller)){
             $this->controller = $this->defaultController;
         }
-    
-        
     }
+    
+    public function resolveAction(&$segments){
+        $this->action = array_shift($segments);
+        
+        if(empty($this->action)){
+            $this->action = $this->defaultAction;
+        }
+    }
+    
     
     public function getURL(){
         
@@ -48,8 +59,15 @@ class Request {
     
     public function getControllerFileName(){
         
+        return 'controllers/'.$this->getControllerClassName().'.php';
+    }
+    public function getAction(){
         
+        return $this->action;
     }
     
-    
+    public function getActionMethodName(){
+       
+        return Inflector::lowerCamel($this->getController())."Action";
+    }
 }

@@ -11,4 +11,9 @@ class Inflector{
         
         return implode('',$segments);
     }
+    
+    public static function lowerCamel($value){
+        
+        return static::camel($value);
+    }
 }

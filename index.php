@@ -14,6 +14,6 @@ else{
 }
 
 $request = new Request($url);
-var_dump($request->getControllerClassName());
+var_dump($request->getAction());
 
 

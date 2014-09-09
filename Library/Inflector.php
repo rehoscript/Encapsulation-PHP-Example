@@ -14,6 +14,6 @@ class Inflector{
     
     public static function lowerCamel($value){
         
-        return static::camel($value);
+        return lcfirst(static::camel($value));
     }
 }

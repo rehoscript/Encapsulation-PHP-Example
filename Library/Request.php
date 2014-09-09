@@ -5,7 +5,8 @@ class Request {
               $url,
               $controller, 
               $defaultController = 'home',
-              $defaultAction = 'index';
+              $defaultAction = 'index',
+              $params = array();
 
     public function __construct($url) {
         
@@ -19,6 +20,7 @@ class Request {
         
         $this->resolveController($segments);
         $this->resolveAction($segments);
+        $this->resolveParams($segments);
         
         
     }
@@ -39,7 +41,15 @@ class Request {
             $this->action = $this->defaultAction;
         }
     }
+     public function resolveParams(&$segments){
+        $this->params = $segments;
+        
+        
+    }
     
+    public function getParams(){
+        return $this->params;
+    }
     
     public function getURL(){
         
@@ -68,6 +78,26 @@ class Request {
     
     public function getActionMethodName(){
        
-        return Inflector::lowerCamel($this->getController())."Action";
+        return Inflector::lowerCamel($this->getAction())."Action";
+    }
+    
+    public function execute(){
+        $controllerClassName = $this->getControllerClassName();
+        $controllerFileName = $this->getControllerFileName();
+        $actionMethodName = $this->getActionMethodName();
+        $params = $this->getParams();
+        
+        if(!file_exists($controllerFileName)){
+            exit("Controlador no existe");
+        }
+        
+        require $controllerFileName;
+        $controller = new $controllerClassName();
+        
+        call_user_func_array([$controller,$actionMethodName],$params);
+        
+        $controller->actionMethodName();
+        
+        
     }
 }

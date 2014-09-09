@@ -7,11 +7,4 @@ class HomeController{
     }
 }
 
-$confidential = "No public";
-$language = "PHP";
-$title = "HI!";
-
-
-
-view('home',  compact("language","title"));
 ?>

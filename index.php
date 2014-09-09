@@ -14,6 +14,7 @@ else{
 }
 
 $request = new Request($url);
-var_dump($request->getAction());
+$request->execute();
+        
 
 

@@ -1,21 +1,19 @@
 <?php
 require 'config.php';
 require 'helpers.php';
+require 'Library/Request.php';
+require 'Library/Inflector.php';
+
+if(empty($_GET['url'])){
+    
+    $url = "";
+}
+else{
+    
+    $url = $_GET['url'];
+}
+
+$request = new Request($url);
+var_dump($request->getControllerClassName());
 
 
-controller($_GET['url']);
-
-
-//if(empty($_GET['url']))
-//{
-//    require 'controllers/home.php';
-//}
-//elseif($_GET['url'] == 'contactos')
-//{
-//        require 'controllers/contactos.php';
-//}
-//else
-//{
-//    header("HTTP/1.0 404 Not Found");
-//    exit("Pagina no encontrada");
-//}

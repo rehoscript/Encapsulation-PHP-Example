@@ -2,7 +2,6 @@
 require 'config.php';
 require 'helpers.php';
 
-//Llamar controladores individuales
 
 controller($_GET['url']);
 

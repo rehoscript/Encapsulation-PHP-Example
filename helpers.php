@@ -6,11 +6,7 @@
  * and open the template in the editor.
  */
 
-function view($template,$vars = array())
-{
-    extract($vars);
-    require "views/$template"."_tpl.php";
-}
+
 function controller($name)
 {
     if(empty($name))

@@ -10,7 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <h1><?=$title?></h1>
+        <h1></h1>
         <hr>
         <h2> Aprendiendo: <?=$language?></h2>
         <hr>

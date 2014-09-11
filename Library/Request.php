@@ -96,7 +96,12 @@ class Request {
         
        $response = call_user_func_array([$controller,$actionMethodName],$params);
         
-        if($response instanceof Response){
+       $this->executeResponse($response);
+        
+    }
+    
+    public function executeResponse($response){
+         if($response instanceof Response){
             $response->execute();
         }
         else if(is_string($response)){
@@ -108,6 +113,5 @@ class Request {
         else{
             exit("Respuesta no valida");
         }
-        
     }
 }
